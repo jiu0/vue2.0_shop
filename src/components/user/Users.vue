@@ -1,7 +1,7 @@
 <template>
    <div>
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>用户管理</el-breadcrumb-item>
             <el-breadcrumb-item>用户列表</el-breadcrumb-item> 
         </el-breadcrumb>
@@ -55,7 +55,7 @@
                            <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeUserById(scope.row.id)"></el-button>
                         </el-tooltip>
                         <el-tooltip  effect="dark" content="分配角色" placement="top" :enterable="false">
-                           <el-button size="mini" type="warning" icon="el-icon-setting"></el-button>
+                           <el-button size="mini" type="warning" icon="el-icon-setting" @click="setRole(scope.row)"></el-button>
                         </el-tooltip>
                     </template>
                 </el-table-column>
@@ -116,6 +116,30 @@
                 <el-button type="primary" @click="editUser">确 定</el-button>
             </span>
         </el-dialog>
+         <!-- 分配角色 -->
+        <el-dialog
+            title="分配角色"
+            :visible.sync="setRoleDialogVisible" @close="setRoleDialogColsed"
+            width="50%">
+            <div>
+               <p>当前的用户:{{userInfo.username}}</p>
+               <p>当前的角色:{{userInfo.role_name}}</p>
+               <p>分配新角色:
+                  <el-select v-model="selectedRoleId" placeholder="请选择">
+                        <el-option
+                            v-for="item in rolesList"
+                            :key="item.id"
+                            :label="item.roleName"
+                            :value="item.id">
+                        </el-option>
+                  </el-select>
+               </p>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -139,6 +163,10 @@ export default {
          callback(new Error('请输入合法的手机号'))
     };
     return{
+       selectedRoleId:'',  //已选中的角色id 
+       rolesList:[],   // 保存所有角色列表 
+       userInfo:{},    // 保存分配权限按钮获取的行数据
+       setRoleDialogVisible:false,  // 控制分配角色的显隐 
        queryInfo:{
           query:'',         // 搜索关键字
           pageNum:1,        // 当前的页数
@@ -195,6 +223,29 @@ export default {
       this.getUserList()
   },
   methods:{
+    // 关闭分配角色弹框
+    setRoleDialogColsed(){
+       this.selectedRoleId = '';
+       this.userInfo = {}
+    },
+     //点击确认 分配角色
+    async saveRoleInfo(){
+        if(!this.selectedRoleId) { return this.$message.error('请选择要分配的角色')}
+        const {data:res} = await this.$http.put('/userrole',{userId:this.userInfo.id,rid:this.selectedRoleId})
+        if(res.data.meta.status !== 200 ) { return this.$message.error('设置角色失败')}
+        this.$message.success(res.data.meta.msg)
+        this.getUserList();
+        this.setRoleDialogVisible = false;
+     }, 
+    // 分配角色按钮
+    async setRole(userInfo){
+        this.userInfo = userInfo
+        //在展示弹框之前 获取所有的角色列表
+        const {data:res} = await this.$http.get('/roles')
+        if(res.data.meta.status !== 200){ return this.$message.error('获取角色列表失败')}
+        this.rolesList = res.data.data;
+        this.setRoleDialogVisible = true;
+    },
     // 根据用户id删除用户
     async removeUserById(id){
        // 弹框提示
@@ -205,20 +256,19 @@ export default {
         }).catch(err=> err)
         //点击确定返回 confirm   取消 返回 cancel
         if(confirmResult !== 'confirm'){
-            this.$message.info('已取消删除')
+            return this.$message.info('已取消删除')
         }else{
             const {data:res} = await this.$http.delete('/deleteuser',{id:id})
             if(res.data.meta.status !== 200){ this.$message.error('删除单个用户失败')}
             this.$message.success('删除单个用户成功')
             this.getUserList()
         }
-  },
-
+     },
      // 编辑用户 渲染数据
      async showEditDialog(userId,index){
          const {data:res} = await this.$http.get('/editusers',{id:userId})
          if(res.data.meta.status !== 200){
-             this.$message.error('获取用户信息失败')
+            return this.$message.error('获取用户信息失败')
          }
          res.data.data.forEach((item,i)=>{
             if(index === i){
