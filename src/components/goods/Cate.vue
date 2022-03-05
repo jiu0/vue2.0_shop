@@ -134,14 +134,14 @@ export default {
        this.addCateForm.cat_level = 0;
     },
     //点击添加分类弹框里面的确认按钮
-    async addCate(){
-      this.$refs.addCateRefvalidate((valid) => {
-       if(!valid) return;
-       const {data:res} = await this.$http.post('/addcategories',this.addCateForm)
-       if(res.data.meta.status !== 201 ){ return this.$message.error('新增商品分类失败')}
-       this.$message.success(res.data.meta.msg)
-       this.getCateList;
-       this.addCateDialogVisible = false;
+    addCate(){
+       this.$refs.addCateRef.validate(async valid => {
+          if(!valid) return
+          const {data:res} = await this.$http.post('/addcategories',this.addCateForm)
+          if(res.data.meta.status !== 201 ){ return this.$message.error('新增商品分类失败')}
+          this.$message.success(res.data.meta.msg)
+          this.getCateList;
+          this.addCateDialogVisible = false;
       })
     },
     // 级联选取器里面的值发生改变触发
