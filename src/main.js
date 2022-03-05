@@ -8,6 +8,10 @@ import './plugins/element.js'
 import './assets/css/global.css'
 import './assets/font/iconfont.css'
 
+// 引进table 插件
+import TreeTable from 'vue-table-with-tree-grid'
+
+
 import axios from 'axios';
 // 配置请求的根路径
 //axios.defaults.baseURL= 'http://localhost:8080';
@@ -18,7 +22,7 @@ axios.interceptors.request.use(config=>{
    return config;
 })
 
-
+Vue.component('tree-table',TreeTable)
 Vue.config.productionTip = false
 
 // 引入mock 数据
