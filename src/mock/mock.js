@@ -805,7 +805,7 @@ Mock.mock("/categories","get",{
        },
       "meta":{
           "msg":"新增商品分类成功",
-          "status":200
+          "status":201
        }   
     }
 })
