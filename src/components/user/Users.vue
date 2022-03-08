@@ -10,7 +10,7 @@
             <!-- 搜索和添加区域 -->
             <el-row :gutter="20">
                <el-col :span="8">
-                   <el-input placeholder="请输入内容" class="" v-model="queryInfo.query" clearable @clear="getUserList">
+                   <el-input placeholder="请输入内容"  v-model="queryInfo.query" clearable @clear="getUserList">
                       <el-button slot="append" icon="el-icon-search" @click="getUserList"></el-button>
                    </el-input>
                </el-col>
@@ -248,21 +248,21 @@ export default {
     },
     // 根据用户id删除用户
     async removeUserById(id){
-       // 弹框提示
-    const confirmResult = await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).catch(err=> err)
-        //点击确定返回 confirm   取消 返回 cancel
-        if(confirmResult !== 'confirm'){
-            return this.$message.info('已取消删除')
-        }else{
-            const {data:res} = await this.$http.delete('/deleteuser',{id:id})
-            if(res.data.meta.status !== 200){ this.$message.error('删除单个用户失败')}
-            this.$message.success('删除单个用户成功')
-            this.getUserList()
-        }
+        // 弹框提示
+        const confirmResult = await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+            }).catch(err=> err)
+            //点击确定返回 confirm   取消 返回 cancel
+            if(confirmResult !== 'confirm'){
+                return this.$message.info('已取消删除')
+            }else{
+                const {data:res} = await this.$http.delete('/deleteuser',{id:id})
+                if(res.data.meta.status !== 200){ this.$message.error('删除单个用户失败')}
+                this.$message.success('删除单个用户成功')
+                this.getUserList()
+            }
      },
      // 编辑用户 渲染数据
      async showEditDialog(userId,index){

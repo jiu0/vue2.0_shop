@@ -72,7 +72,13 @@ import Mock from 'mockjs'
                            "path":"categories",
                            "children":[]
                        },
-                      ]
+                       {
+                        "id":107,
+                        "authName":"分类参数",
+                        "path":"params",
+                        "children":[]
+                      },
+                  ]
              },
              { 
                 "id":102,
@@ -712,7 +718,7 @@ import Mock from 'mockjs'
 
 
 
-//获取商品分类列表
+//获取商品分类列表  级联框
 Mock.mock("/categories","get",{
    "data":{
       "pagenum":1,
@@ -809,3 +815,196 @@ Mock.mock("/categories","get",{
        }   
     }
 })
+
+
+
+  // 获取商品静态参数列表  only 静态参数  many 动态参数
+  Mock.mock("/categoriesonlyatr","get",{
+   "data":{
+      "data":[
+         {
+          "attr_id":1,
+          "attr_name":"版式",
+          "cat_id":33,
+          "attr_sel":"only",
+          "attr_vals":"曲面版式,人工版式,光滑版式,飞面版式,曲度版式",
+         },
+         {
+            "attr_id":2,
+            "attr_name":"版式",
+            "cat_id":34,
+            "attr_sel":"only",
+            "attr_vals":"曲面版式44,人工版式44,光滑版式44,飞面版式44,曲度版式44",
+           },
+      ],
+      "meta":{
+          "msg":"获取静态参数成功",
+          "status":200
+       }   
+    }
+})
+
+
+  // 获取商品动态参数列表  only 静态参数  many 动态参数
+  Mock.mock("/categoriesmanyatr","get",{
+   "data":{
+      "data":[
+           {
+            "attr_id":2,
+            "attr_name":"cp3",
+            "cat_id":34,
+            "attr_sel":"many",
+            "attr_vals":"曲面版式2,人工版式2,光滑版式2,飞面版式2,曲度版式2",
+           },
+           {
+            "attr_id":78,
+            "attr_name":"cp3",
+            "cat_id":45,
+            "attr_sel":"many",
+            "attr_vals":"曲面版式55,人工版式255,光滑版式255,飞面版式255,曲度版式255",
+           },
+       ],
+      "meta":{
+          "msg":"获取动态参数成功",
+          "status":200
+       }   
+    }
+})
+
+
+  // 添加商品静态参数  only 静态参数  many 动态参数
+  Mock.mock("/addcategoriesonlyatr","post",{
+   "data":{
+      "data":[
+         {
+          "attr_id":1,
+          "attr_name":"cpo",
+          "cat_id":33,
+          "attr_sel":"only",
+          "attr_write":"list",
+          "attr_vals":"a,b,c",
+         },
+      ],
+      "meta":{
+          "msg":"添加静态参数成功",
+          "status":200
+       }   
+    }
+})
+
+  // 添加商品动态参数  only 静态参数  many 动态参数
+  Mock.mock("/addcategoriesmanyatr","post",{
+   "data":{
+      "data":[
+           {
+            "attr_id":2,
+            "attr_name":"cp3",
+            "cat_id":34,
+            "attr_sel":"many",
+            "attr_write":"list2",
+            "attr_vals":"a,b,c,d",
+         },
+       ],
+      "meta":{
+          "msg":"添加动态参数成功",
+          "status":200
+       }   
+    }
+})
+
+
+
+  // 编辑商品静态参数  渲染数据 only 静态参数  many 动态参数
+  Mock.mock("/editcategoriesonlyatr","post",{
+   "data":{
+      "data":[
+         {
+          "attr_id":1,
+          "attr_name":"cpo",
+          "cat_id":33,
+          "attr_sel":"only",
+          "attr_write":"list",
+          "attr_vals":"a,b,c",
+         },
+      ],
+      "meta":{
+          "msg":"渲染静态参数成功",
+          "status":200
+       }   
+    }
+})
+
+
+  // 编辑商品动态参数 渲染数据  only 静态参数  many 动态参数
+  Mock.mock("/editcategoriesmanyatr","post",{
+   "data":{
+      "data":[
+           {
+            "attr_id":2,
+            "attr_name":"cp3",
+            "cat_id":34,
+            "attr_sel":"many",
+            "attr_write":"list2",
+            "attr_vals":"a,b,c,d",
+         },
+       ],
+      "meta":{
+          "msg":"渲染动态参数成功",
+          "status":200
+       }   
+    }
+})
+
+
+  // 编辑商品静态参数 确认提交  渲染数据 only 静态参数  many 动态参数
+  Mock.mock("/editsubcategoriesonlyatr","put",{
+   "data":{
+      "data":[
+         {
+          "attr_id":1,
+          "attr_name":"cpo",
+          "cat_id":33,
+          "attr_sel":"only",
+          "attr_write":"list",
+          "attr_vals":"a,b,c",
+         },
+      ],
+      "meta":{
+          "msg":"提交修改静态参数成功",
+          "status":200
+       }   
+    }
+})
+
+  // 编辑商品动态参数 确认提交  渲染数据 only 静态参数  many 动态参数
+  Mock.mock("/editsubcategoriesmanyatr","put",{
+   "data":{
+      "data":[
+         {
+          "attr_id":1,
+          "attr_name":"cpo",
+          "cat_id":33,
+          "attr_sel":"many",
+          "attr_write":"list",
+          "attr_vals":"a,b,c",
+         },
+      ],
+      "meta":{
+          "msg":"提交修改动态参数成功",
+          "status":200
+       }   
+    }
+})
+
+  //  删除参数接口
+  Mock.mock("/deletecategories","delete",{
+   "data":{
+      "data":null,
+      "meta":{
+          "msg":"删除成功",
+          "status":200
+       }   
+    }
+})
+
+

@@ -1,0 +1,264 @@
+import Mock from 'mockjs'
+
+ // 商品列表数据
+ Mock.mock("/goods","get",{
+    "data":{
+       "data":{
+           "pagenum":1,
+           "total":30,
+           "goods":[
+              {"goods_id":500,"goods_name":"超级管理员","goods_price":133,"goods_number":44,
+              "goods_weight":1,"goods_state":null,"add_time":134454354,"hot_number":0,"is_promote":false
+              },
+              {"goods_id":5020,"goods_name":"超级管理员2","goods_price":"1332","goods_number":442,
+              "goods_weight":2,"goods_state":null,"add_time":88888888,"hot_number":1,"is_promote":true},
+            ]
+           },
+       "meta":{
+           "msg":"获取商品列表成功",
+           "status":200
+       }   
+     }
+ })
+
+
+ 
+ // 删除单个商品
+ Mock.mock("/deletegoods","delete",{
+    "data":{
+       "data":null,
+       "meta":{
+           "msg":"删除成功",
+           "status":200
+        }   
+     }
+ })
+
+
+ // 获取动态商品参数
+ Mock.mock("/goodsmanycateor","get",{
+    "data":{
+       "data":[
+         {
+           "attr_id":3077,
+           "attr_name":"版式",
+           "cat_id":6,
+           "attr_sel":3077,
+           "attr_vals":"超波曲面,热工之哦,我扽的分,的风格",
+           "attr_write":30783333,
+           "delete_time":88990897888,
+         },
+         {
+            "attr_id":30,
+            "attr_name":"颜色",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"超波曲面2,热工之哦2,我扽的分2,的风格2",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+       ],
+       "meta":{
+           "msg":"获取动态商品参数成功",
+           "status":200
+        }   
+     }
+ })
+
+
+ // 获取静态商品属性
+ Mock.mock("/goodsonlyatr","get",{
+    "data":{
+       "data":[
+         {
+           "attr_id":3077,
+           "attr_name":"主题商品名称",
+           "cat_id":6,
+           "attr_sel":3077,
+           "attr_vals":"名称1",
+           "attr_write":30783333,
+           "delete_time":88990897888,
+         },
+         {
+            "attr_id":301,
+            "attr_name":"主题商品曲度",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"曲度1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+          {
+            "attr_id":302,
+            "attr_name":"外观安装",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"安装1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+          {
+            "attr_id":303,
+            "attr_name":"功能效率",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"效率1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+          {
+            "attr_id":304,
+            "attr_name":"端口换看",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"换看1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+       ],
+       "meta":{
+           "msg":"获取静态商品属性成功",
+           "status":200
+        }   
+     }
+ })
+
+
+// 上传图片 
+Mock.mock("/upload","post",{
+     "data":{
+        "data":[
+              {
+                "tmp_path":'g3.jpg',
+                "imgUrl":'http://r7ndx2ysi.hn-bkt.clouddn.com/g3.jpg'
+              },
+              {
+                "tmp_path":'g1.jpg',
+                "imgUrl":'http://r7ndx2ysi.hn-bkt.clouddn.com/g1.jpg'
+              },
+            ],
+            "meta":{
+                "msg":"上传图片成功",
+                "status":200
+            }       
+       }
+  })
+
+
+  
+ // 添加商品
+ Mock.mock("/addgoods","post",{
+    "data":{
+       "data":[
+         {
+           "attr_id":3077,
+           "attr_name":"主题商品名称",
+           "cat_id":6,
+           "attr_sel":3077,
+           "attr_vals":"名称1",
+           "attr_write":30783333,
+           "delete_time":88990897888,
+         },
+         {
+            "attr_id":301,
+            "attr_name":"主题商品曲度",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"曲度1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+          {
+            "attr_id":302,
+            "attr_name":"外观安装",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"安装1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+          {
+            "attr_id":303,
+            "attr_name":"功能效率",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"效率1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+          {
+            "attr_id":304,
+            "attr_name":"端口换看",
+            "cat_id":7,
+            "attr_sel":3017,
+            "attr_vals":"换看1",
+            "attr_write":307833,
+            "delete_time":88990898,
+          },
+       ],
+       "meta":{
+           "msg":"获取静态商品属性成功",
+           "status":200
+        }   
+     }
+ })
+
+
+
+ // 商品列表 里的 添加商品
+ Mock.mock("/creategoods","post",{
+  "data":{
+     "data":{
+         "goods_id":123,
+         "goods_name":"主题商品名称",
+         "goods_price":6,
+         "cat_id":3077,
+         "goods_number":38,
+         "goods_weight":59,
+         "goods_introduce":"kkii",
+         "goods_big_logo":"",
+         "goods_small_logo":"",
+         "goods_state":1,
+         "add_time":12345096854,
+         "upd_time":12345789776,
+         "hot_number":0,
+         "is_promote":false,
+         "pics":[
+           {
+             "pics_id":908,
+             "goods_id":134,
+             "pics_big":"",
+             "pics_mid":"",
+             "pics_sma":"",
+           }
+         ],
+         attrs:[
+            {
+              "attr_id":12,
+              "goods_id":164,
+              "attr_value":"222",
+              "add_price":null,
+              "attr_name":"gggg",
+              "attr_sel":"many",
+              "attr_write":"list",
+              "attr_vals":"",
+            },
+            {
+              "attr_id":125,
+              "goods_id":167,
+              "attr_value":"2282",
+              "add_price":null,
+              "attr_name":"ggg8g",
+              "attr_sel":"many",
+              "attr_write":"list2",
+              "attr_vals":"",
+            },
+         ]
+       },
+     "meta":{
+         "msg":"创建商品成功",
+         "status":201
+      }   
+   }
+})
+
