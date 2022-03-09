@@ -185,7 +185,7 @@ export default {
     async getCateList(){
        const {data:res} = await this.$http.get('/categories',this.queryInfo);
        if(res.data.meta.status !== 200){ return this.$message.error('')}
-       console.log('res33',res)
+       this.$message.success(res.data.meta.msg)
        this.catelist = res.data.data;
        this.total = res.data.total
     }

@@ -34,15 +34,23 @@ Vue.component('tree-table',TreeTable)
 Vue.config.productionTip = false
 
 // 时间格式化
-Vue.filter('dataFormat',function(originVal){
-   const dt = new Date(originVal);
-   const y = dt.getFullYear();
-   const m = (dt.getMonth() + 1 + '').padStart(2,'0');
-   const d = (dt.getDate() + '').padStart(2,'0');
-   const hh = (dt.getHours() + '').padStart(2,'0');
-   const mm = (dt.getMinutes() + '').padStart(2,'0');
-   const ss = (dt.setSeconds() + '').padStart(2,'0');
-   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+Vue.filter('dataFormat',function(timestamp){
+   // const dt = new Date(originVal);
+   // const y = dt.getFullYear();
+   // const m = (dt.getMonth() + 1 + '').padStart(2,'0');
+   // const d = (dt.getDate() + '').padStart(2,'0');
+   // const hh = (dt.getHours() + '').padStart(2,'0');
+   // const mm = (dt.getMinutes() + '').padStart(2,'0');
+   // const ss = (dt.setSeconds() + '').padStart(2,'0');
+   // return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+   var date = new Date(timestamp * 1000); // 时间为10 位 要 * 1000 时间是13 位 不要 * 1000 
+   var Y = date.getFullYear() + '-';
+   var M = date.getMonth() + 1 + '-';
+   var D = date.getDate() + ' ';
+   var h = date.getHours() + ':';
+   var m = date.getMinutes()+ ':';
+   var s = date.getSeconds();
+   return Y + M + D + h + m + s;
 })
 
 
@@ -52,7 +60,7 @@ Vue.filter('dataFormat',function(originVal){
 // 引入mock 数据
 require("@/mock/mock.js");
 require("@/mock/goodList.js");
-
+require("@/mock/order.js");
 
 
 new Vue({
