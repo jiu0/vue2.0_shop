@@ -48,7 +48,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="180px">
-                     <template slot-scope="scope">
+                     <template>
                         <el-tooltip  effect="dark" content="编辑订单" placement="top">
                            <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditDialog"></el-button>
                         </el-tooltip>

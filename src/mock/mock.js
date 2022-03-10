@@ -100,7 +100,7 @@ import Mock from 'mockjs'
                 "children":[
                         {
                             "id":105,
-                            "authName":"数据列表",
+                            "authName":"数据报表",
                             "path":"reports",
                             "children":[]
                         }

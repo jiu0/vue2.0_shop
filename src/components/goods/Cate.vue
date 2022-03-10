@@ -140,7 +140,7 @@ export default {
           const {data:res} = await this.$http.post('/addcategories',this.addCateForm)
           if(res.data.meta.status !== 201 ){ return this.$message.error('新增商品分类失败')}
           this.$message.success(res.data.meta.msg)
-          this.getCateList;
+          this.getCateList();
           this.addCateDialogVisible = false;
       })
     },

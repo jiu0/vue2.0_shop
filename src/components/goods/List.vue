@@ -45,7 +45,7 @@
                 <el-table-column label="操作" width="180px">
                      <template slot-scope="scope">
                         <el-tooltip  effect="dark" content="编辑商品" placement="top">
-                           <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditDialog(scope.row.id,scope.$index)"></el-button>
+                           <el-button size="mini" type="primary" icon="el-icon-edit"></el-button>
                         </el-tooltip>
                         <el-tooltip  effect="dark" content="删除商品" placement="top">
                            <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeGoodsById(scope.row.goods_id)"></el-button>
