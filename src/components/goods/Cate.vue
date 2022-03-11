@@ -184,7 +184,7 @@ export default {
     }, 
     async getCateList(){
        const {data:res} = await this.$http.get('/categories',this.queryInfo);
-       if(res.data.meta.status !== 200){ return this.$message.error('')}
+       if(res.data.meta.status !== 200){ return this.$message.error('获取商品分类失败')}
        this.$message.success(res.data.meta.msg)
        this.catelist = res.data.data;
        this.total = res.data.total

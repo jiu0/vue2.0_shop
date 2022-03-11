@@ -262,3 +262,101 @@ Mock.mock("/upload","post",{
    }
 })
 
+
+//获取商品分类列表  级联框
+Mock.mock("/categories","get",{
+  "data":{
+     "pagenum":1,
+     "pageSize":5,
+     "total":30,
+     "data":[
+         {
+          "cat_id":1,
+          "cat_name":"大家电",
+          "cat_pid":0,
+          "cat_level":0,
+          "cat_deleted":false,
+          "children":[
+             {
+              "cat_id":21,
+              "cat_name":"电视",
+              "cat_pid":1,
+              "cat_level":1,
+              "cat_deleted":false,
+               "children":[
+                   {
+                       "cat_id":211,
+                       "cat_name":"曲面电视",
+                       "cat_pid":2,
+                       "cat_level":2,
+                       "cat_deleted":false,
+                   },
+                   {
+                    "cat_id":212,
+                    "cat_name":"彩色电视",
+                    "cat_pid":3,
+                    "cat_level":3,
+                    "cat_deleted":false,
+                 },
+                ]
+              },  
+            ]
+         },
+         {
+           "cat_id":4,
+           "cat_name":"服装",
+           "cat_pid":0,
+           "cat_level":0,
+           "cat_deleted":false,
+           "children":[
+              {
+               "cat_id":41,
+               "cat_name":"衣服",
+               "cat_pid":1,
+               "cat_level":1,
+               "cat_deleted":false,
+                "children":[
+                    {
+                        "cat_id":411,
+                        "cat_name":"男装",
+                        "cat_pid":2,
+                        "cat_level":2,
+                        "cat_deleted":false,
+                    },
+                    {
+                     "cat_id":412,
+                     "cat_name":"女装",
+                     "cat_pid":3,
+                     "cat_level":3,
+                     "cat_deleted":false,
+                  },
+                 ]
+               },  
+             ]
+          },
+      ],
+     "meta":{
+         "msg":"获取商品分类成功",
+         "status":200
+      },
+
+   }
+})
+
+
+  // 添加商品分类
+  Mock.mock("/addcategories","post",{
+    "data":{
+       "data":{
+           "cat_id":64,
+           "cat_name":"相恋了",
+           "cat_pid":"1",
+           "cat_level":"23",
+        },
+       "meta":{
+           "msg":"新增商品分类成功",
+           "status":201
+        }   
+     }
+ })
+ 

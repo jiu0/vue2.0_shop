@@ -65,9 +65,11 @@ Vue.filter('dataFormat',function(timestamp){
 
 // 引入mock 数据
 require("@/mock/mock.js");
-require("@/mock/goodList.js");
+require("@/mock/goods.js");
 require("@/mock/order.js");
 require("@/mock/report.js");
+require("@/mock/power.js");
+require("@/mock/user.js");
 
 
 new Vue({
